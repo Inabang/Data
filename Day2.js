@@ -1,4 +1,4 @@
-// Day2 Code (Page 66~ )
+// Day2 Code (Page 66~98 )
 
 /* --------------------------------------------------------------------------------------------------- */
 
@@ -41,7 +41,11 @@
 // console.log(evenNum)
 // filter메소드는 함수의 결과 값을 true로 만드는 원소로 새 배열을 반환한다
 // 즉 [2,4,6,8,10,12,14] 이런식으로 짝수(true)의 배열을 만든다
+/* --------------------------------------------------------------------------------------------------- */
 
+
+
+/* --------------------------------------------------------------------------------------------------- */
 // 검색과 정렬
 // numbers.reverse()
 // console.log(numbers)
@@ -59,7 +63,11 @@
 // console.log(numbers)
 // b가 a보다 크면 양수, a가 b보다 크면 음수 a와 b가 같으면 0을 반환하는 함수이다 
 // 즉 함수의 결과 값이 음수이면 a가 b보다 작다는뜻
+/* --------------------------------------------------------------------------------------------------- */
 
+
+
+/* --------------------------------------------------------------------------------------------------- */
 // 사용자 정의 정렬
 
 // let friends = [
@@ -79,7 +87,11 @@
 // }
 
 // console.log(friends.sort(comparePerson))
+/* --------------------------------------------------------------------------------------------------- */
 
+
+
+/* --------------------------------------------------------------------------------------------------- */
 // 문자 정렬
 // let names = ['Ana','ana','john','John']
 // console.log(names.sort())
@@ -96,8 +108,11 @@
 //   return 0
 // })
 // console.log(names)
+/* --------------------------------------------------------------------------------------------------- */
 
 
+
+/* --------------------------------------------------------------------------------------------------- */
 //검색
 // 인자로 전달된 문자열과 매치되는 첫번째 원소의 인덱스는 indexOf, 마지막원소는 lastIndexOf 두 메소드로 구할 수 있다.
 
@@ -119,9 +134,12 @@
 // let numString = numbers.join('*')
 // console.log(numString)
 // 배열의 내용을 서버로 전달하거나 디코딩할때 편하다
+/* --------------------------------------------------------------------------------------------------- */
 
 
 
+
+/* --------------------------------------------------------------------------------------------------- */
 // 3장 스택
 // 스택은 후입선출 원리에따라 정렬된 컬렉션이다 
 // 스택의 자료는 항상 동일한 종단점에서 추가/삭제된다. 스택에서 종단점은 top , base (맨위와 바닥)
@@ -219,3 +237,163 @@
 // console.log(baseConverter(100345,2))
 // console.log(baseConverter(100345,8))
 // console.log(baseConverter(100345,16))
+/* --------------------------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------------------------- */
+// Queue는 선입선출방식
+// enqueue (뒤쪽에 원소들을 추가한다) , dequeue(앞에서 첫번째 원소를 반환하고 큐에서 삭제한다)) , front(첫번째 원소를 반환하지만 삭제를 하진않는다))
+// isEmpty (stack에서의 isEmpty와 같다) , size(이하동일)
+
+
+ let items = []
+
+function Queue(){
+  this.enqueue = function(element){
+    items.push(element)
+  }
+  this.dequeue = function(){
+    return items.shift()
+  }
+  this.front = function(){
+    return items[0]
+  }
+  this.isEmpty = function(){
+    return items.length === 0; // 내부배열의 길이를 0인지 확인한다
+  }
+  this.size = function(){
+   return items.length // 아이템의 length (size로 호출한다)
+  }
+  this.print = function(){
+    console.log(items.toString())
+  }
+}
+
+// let queue = new Queue()
+//console.log(queque.isEmpty())
+
+// queue.enqueue("John")
+// queue.enqueue("Jack")
+// queue.enqueue("Camila")
+
+// queue.print()
+// console.log(queue.size())
+// console.log(queue.isEmpty())
+
+// queue.dequeue()
+// queue.dequeue()
+// queue.print()
+/* --------------------------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------------------------- */
+// 우선순위 큐
+// 우선 순위큐는 우선순위를 설정해 원소를 정확한 위치에 추가하는것, 
+// 그리고 순서대로 하되 삭제만 우선순위에 따르는것, 두가지 방법으로 구현할수있다.
+
+// function PriorityQueue(){
+//   let items = []
+
+//   function QueueElement (element,priority){ //(1)
+//     this.element = element
+//     this.priority = priority
+//   }
+
+//   this.enqueue = function(element, priority){
+//     let queueElement = new QueueElement(element,priority)
+
+//     if(this.isEmpty()){
+//       items.push(queueElement) //(2)
+//     }else{
+//       let added = false
+//       for (let i = 0; i<items.length; i++){
+//         if (queueElement.priority < items[i].priority){
+//           items.splice(i,0,queueElement) //(3)
+//           added = true
+//           break //(4)
+//         }
+//       }
+//       if(!added){ //(5)
+//         items.push(queueElement)
+//       }
+//     }
+//   }
+//   this.dequeue = function(){
+//     return items.shift()
+//   }
+//   this.front = function(){
+//     return items[0]
+//   }
+//   this.isEmpty = function(){
+//     return items.length === 0; // 내부배열의 길이를 0인지 확인한다
+//   }
+//   this.size = function(){
+//    return items.length // 아이템의 length (size로 호출한다)
+//   }
+//   this.print = function(){
+//     console.log(items)
+//   }
+//   // 그 밖의 메소드는 기본 큐의 구현체와 동일하다
+// }
+
+
+//(1)에 추가된 queueElement는 PriorityQueue가 기본 Queue 클래스에서 달라진 부분으로
+// 큐 원소에 우선순위가 부가된, 새로운 형태의 원소다.
+// 큐가 비어있다면 그냥 원소를 넣는다 (2) -> 큐가 비어 있지 않다면 먼저 기존 원소들과 우선순위를 비교한다.
+// 만약 새 원소보다 우선순위가 더 높은 기존 원소가 있다면, 한 칸 앞에 새 원소를 추가한다.
+// 구현은 Array.splice() 메소드를 사용한다 더높은 우선순위의 원소가 있다면 새 원소를 삽입하고 (3) 루프문을 종료한다 (4)
+// 이런식으로 큐의 원소들을 웃너순위에 따라 정렬하는 것이다.
+// 만약 새 원소의 우선순위가 가장 낮다면 큐의 맨 뒤편에 추가하면 끝이다. (5)
+
+// let priorityQueue = new PriorityQueue()
+
+// priorityQueue.enqueue("John",2)
+// priorityQueue.enqueue("Jack",1)
+// priorityQueue.enqueue("Camila",1)
+// priorityQueue.print()
+/* --------------------------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------------------------- */
+// 환형 큐 (뜨거운 감자)
+
+// function hotPotato(nameList,num){
+//   let queue = new Queue() // (1)
+
+//   for(let i = 0; i<nameList.length; i++){
+//     queue.enqueue(nameList[i]) // (2)
+//   }
+
+//   let eliminated = ''
+
+//   while(queue.size() >1){
+//     for(let i=0; i<num; i++){
+//       let isee = queue.enqueue(queue.dequeue()) //(3)
+//     }
+//     eliminated = queue.dequeue() //(4)
+//     console.log(eliminated + ' (을)를 뜨거운 감자 게임에서 퇴장시킵니다.')
+//   }
+//   return queue.dequeue() //(5)
+// }
+
+
+// let names = ["John","Jack","Camila","Ingird","Carl"]
+// let winner = hotPotato(names,7)
+// console.log('승자는 ' + winner + ' 입니다.')
+
+// Queue() 인스턴스를생성 (1) -> 게임참가자 전원의 이름을 배열로 읽어 큐에 추가한다.
+// 일정횟수(num) 만큼 큐를 순회한다 맨앞의 원소를 꺼내어 맨 끝에 다시넣는다 (3)
+// 지정된 횟수만큼 반복 됐을 때 뜨거운 감자를 들고 있던 사람을 퇴장시킨다(4) 큐에서 삭제된다.
+// 그리고 마지막에 남은 사람이 승자가 된다. (5)
+/* --------------------------------------------------------------------------------------------------- */
+
+// 연결 리스트
+
+// 연결 리스트는 원소 추가/삭제시 다른 원소들을 이동하지 않아도 된다는 점에서 Array(배열) 보다 낫다.
+// 연결리스트의 포인터 덕분인데, 하지만 그 때문에 약간 주의해야할 부분이 있다.
+// Array는 특정 원소에 index로 바로 접근할 수 있는 반면, 연결 리스트에서는 원소를 찾을 때까지 처음부터 루프를 반복해야한다.
+
+// 연결 리스트는 서로 손잡고 원을 그리는것에 비유할 수 있다.
+// 사람들 각자가 원소이며 자신의 손이 옆사람과 연결되는 포인터라 할 수 있다.
+// 기차 역시 연결 리스트다. 객차가 모두 서로 연결되어 있으므로 어떤 객차의 위치를 바꾸거나 추가/삭제하려면 연결을 잠시 끊어야한다. 
+// Day2 Code (Page 66~98 )
