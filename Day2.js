@@ -246,28 +246,28 @@
 // isEmpty (stack에서의 isEmpty와 같다) , size(이하동일)
 
 
- let items = []
+//  let items = []
 
-function Queue(){
-  this.enqueue = function(element){
-    items.push(element)
-  }
-  this.dequeue = function(){
-    return items.shift()
-  }
-  this.front = function(){
-    return items[0]
-  }
-  this.isEmpty = function(){
-    return items.length === 0; // 내부배열의 길이를 0인지 확인한다
-  }
-  this.size = function(){
-   return items.length // 아이템의 length (size로 호출한다)
-  }
-  this.print = function(){
-    console.log(items.toString())
-  }
-}
+// function Queue(){
+//   this.enqueue = function(element){
+//     items.push(element)
+//   }
+//   this.dequeue = function(){
+//     return items.shift()
+//   }
+//   this.front = function(){
+//     return items[0]
+//   }
+//   this.isEmpty = function(){
+//     return items.length === 0; // 내부배열의 길이를 0인지 확인한다
+//   }
+//   this.size = function(){
+//    return items.length // 아이템의 length (size로 호출한다)
+//   }
+//   this.print = function(){
+//     console.log(items.toString())
+//   }
+// }
 
 // let queue = new Queue()
 //console.log(queque.isEmpty())
