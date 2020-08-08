@@ -12,119 +12,120 @@
 // 사람들 각자가 원소이며 자신의 손이 옆사람과 연결되는 포인터라 할 수 있다.
 // 기차 역시 연결 리스트다. 객차가 모두 서로 연결되어 있으므로 어떤 객차의 위치를 바꾸거나 추가/삭제하려면 연결을 잠시 끊어야한다. 
 
-function LinkedList() {
-  let Node = function(element){ //(1)
-    this.element = element
-    this.next = null
-    }
-  let length = 0 //(2)  
-  let head = null // (3) 
+// function LinkedList() {
+//   let Node = function(element){ //(1)
+//     this.element = element
+//     this.next = null
+//     }
+//   let length = 0 //(2)  
+//   let head = null // (3) 
   
-  this.append = function(element){
-    let node = new Node(),  //(1)
-        current //(2)
-    if (head === null){ // 리스트가 비어있다면 // (3)
-      head = node
-    }else{
-      current = head //(4)
-    // 마지막 원소를 발견할 때까지 계속 루프 순환한다.
-    while(current.next){
-      current= current.next
-    }
-    // 마지막 원소를 링크할 수 있게 노드에 할당한다.
-    current.next = node
-    }
-    length++ // 리스트의 크기를 업데이트한다. (6)
-  }
-  this.insert = function(postion, element){
-    // 범위 외의 값인지 체크한다
-    if(postion >= 0 && postion <= length ){ //(1)
-      let node = new Node(element),
-      current = head,
-      previous,
-      index = 0
+//   this.append = function(element){
+//     let node = new Node(element)  //(1)
+//     let  current //(2)
+//     if (head === null){ // 리스트가 비어있다면 // (3)
+//       head = node
+//     }else{
+//       current = head //(4)
+//     // 마지막 원소를 발견할 때까지 계속 루프 순환한다.
+//     while(current.next){
+//       current= current.next
+//     }
+//     // 마지막 원소를 링크할 수 있게 노드에 할당한다.
+//     current.next = node
+//     }
+//     length++ // 리스트의 크기를 업데이트한다. (6)
+//   }
+//   this.insert = function(position, element){
+//     // 범위 외의 값인지 체크한다
+//     if(position >= 0 && position <= length ){ //(1)
+//       let node = new Node(element)
+//       let current = head
+//       let previous
+//       let index = 0
 
-      if(postion === 0){
-        node.next = current //(2)
-        head = node
-      }else{
-        while(index++ < postion){ //(3)
-          previous = current
-          current = current.next
-        }
-        node.next = current //(4)
-        previous.next = node //(5)
-      }
-      length++ // 리스트의 크기를 업데이트한다.
-      return true
-    }else{
-      return false //(6)
-    }
+//       if(position === 0){
+//         node.next = current //(2)
+//         head = node
+//       }else{
+//         while(index++ < position){ //(3)
+//           previous = current
+//           current = current.next
+//         }
+//         node.next = current //(4)
+//         previous.next = node //(5)
+//       }
+//       length++ // 리스트의 크기를 업데이트한다.
+//       return true
+//     }else{
+//       return false //(6)
+//     }
 
-  }
-  this.removeAt = function(postion){ 
-    if(postion > -1 && postion < length){ //(1)
-      let current = head, //(2)
-      previous, //(3)
-      index= 0 //(4)
+//   }
+//   this.removeAt = function(position){ 
+//     if(position > -1 && position < length){ //(1)
+//       let current = head //(2)
+//       let previous //(3)
+//       let index= 0 //(4)
       
-      // 첫 원소 삭제
-      if(postion === 0){ //(5)
-        head = current.next
-      }else{
-        while(index++ < postion){ //(6) 
-          previous = current //(7)
-          current = current.next //(8)
-        }
-        // 현재의 다음과 이전것을 연결한다: 삭제하기 위해 건너뛴다
-        previous.next = current.next //(9)
-      }
-      length-- //(10)
-    }else{
-      return null //(11)
-    }
-  }
-  this.remove = function(element){
-    let index = this.indexOf(element)
-    return this.removeAt(index)
-  }
-  this.indexOf = function(element){
-    let current = head, //(1)
-    index = -1
+//       // 첫 원소 삭제
+//       if(position === 0){ //(5)
+//         head = current.next
+//       }else{
+//         while(index++ < position){ //(6) 
+//           previous = current //(7)
+//           current = current.next //(8)
+//         }
+//         // 현재의 다음과 이전것을 연결한다: 삭제하기 위해 건너뛴다
+//         previous.next = current.next //(9)
+//       }
+//       length-- //(10)
+//       return current.element
+//     }else{
+//       return null //(11)
+//     }
+//   }
+//   this.remove = function(element){
+//     let index = this.indexOf(element)
+//     return this.removeAt(index)
+//   }
+//   this.indexOf = function(element){
+//     let current = head //(1)
+//     let index = 0
 
-    while(current){ //(2)
-      if(element === current.element){
-        return index //(3)
-      }
-      index++ //(4)
-      current = current.next //(5)
-    }
-    return -1
-  }
-  this.isEmpty = function() {
-    return length === 0
-  }
-  this.size = function() {
-    return length
-  }
-  this.toString = function() {
-    let current = head, //(1)
-    string = '' //(2)
+//     while(current){ //(2)
+//       if(element === current.element){
+//         return index //(3)
+//       }
+//       index++ //(4)
+//       current = current.next //(5)
+//     }
+//     return -1
+//   }
+//   this.isEmpty = function() {
+//     return length === 0
+//   }
+//   this.size = function() {
+//     return length
+//   }
+//   this.toString = function() {
+//     let current = head //(1)
+//     let string = '' //(2)
 
-    while(current){ //(3)
-      string = current.element //(4)   
-      current = current.next //(5)
-    }
-    return string //(6)
-  } 
-  this.print = function() {
-    console.log(this.toString());
-  }
-  this.getHead = function() {
-    return head
-  }
-  // head는 LinkedList의 프라이빗 변수지만 인스턴스 밖에서도 리스트를 반복시킬때 첫번째 원소를 참조할 필요는 있다.
-  }
+//     while(current){ //(3)
+//       string = current.element //(4)   
+//       current = current.next //(5)
+//     }
+//     return string //(6)
+//   } 
+//   this.print = function() {
+//     console.log(this.toString());
+//   }
+//   this.getHead = function() {
+//     return head
+//   }
+//   // head는 LinkedList의 프라이빗 변수지만 인스턴스 밖에서도 리스트를 반복시킬때 첫번째 원소를 참조할 필요는 있다.
+//   }
   // 연결리스트는 Node 라는 헬퍼 클래스가 우선 필요하다 (1) 연결리스트에 추가되는 원소가 바로 Node다 
   // element가 바로 원소에 해당되며, next 프로퍼티는 다음 노드를 가리키는 포인터다.
   // (2) length는 LinkedList의 내부 프라이빗 프로퍼티로 연결 리스트에 담긴 원소의 개수다.
@@ -149,22 +150,22 @@ function LinkedList() {
   // current가 바로 마지막 원소 이므로 current.next를 새로 추가한 원소를 가리키게하면 성공이다.
   // 나중에 리스트 크기를 참조할 수 있으니 length 값을 하나 증가시켜야한다 (6)
 
-  var list = new LinkedList()
+  // var list = new LinkedList()
 
-  list.append(15)
-  list.print()
-  list.append(10)
-  list.print()
-  list.remove(15)
-  list.print()
-  console.log(list.size())
+  // list.append(15)
+  // list.print()
+  // list.append(10)
+  // list.print()
+  // list.remove(15)
+  // list.print()
+  // console.log(list.size())
   // 원소 삭제
 
 // 삭제하려는 원소가 리스트의 첫 번째 원소인지 아닌지에 따라 두 가지 경우를 생각해야 한다. 그래서 remove 메소드를,
 //  원소의 위치를 기준으로 삭제하는 메소드와 원소의 값을 기준으로 삭제하는 메소드, 두가리조 나누어 구현한다
 
 // 그중 원소의 위치를 기준으로 삭제하는 removeAt 메소드를 보자
-// 원소의 위치를 (postion)을 인자로 받는데 우선 이 값이 유효한지 따져야한다 (1)
+// 원소의 위치를 (position)을 인자로 받는데 우선 이 값이 유효한지 따져야한다 (1)
 // 여기서 유효하다는 말은 0부터 리스트크기(인덱스는 0에서 시작하므로 크기 -1)사이의 숫자여야 한다는 뜻이다.
 // 유효하지 않다면 결과 값은 null 을 반환한다 (삭제된 원소가 없다는뜻.)
 
@@ -213,23 +214,23 @@ function LinkedList() {
 
 
 
-// 이중 연결 리스트
-function DoublyLinkedList() {
+// // 이중 연결 리스트
+// function DoublyLinkedList() {
   
-  let Node = function(element){
+//   let Node = function(element){
 
-    this.element = element
-    this.next = null
-    this.prev = null // NEW !
-  }
+//     this.element = element
+//     this.next = null
+//     this.prev = null // NEW !
+//   }
 
-  let length = 0
-  let head = null
-  let tail = null
+//   let length = 0
+//   let head = null
+//   let tail = null
 
-  // Methods 
+//   // Methods 
 
-}
+// }
 
 /* --------------------------------------------------------------------------------------------------- */
 // Day3 Code (Page 98~110)
